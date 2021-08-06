@@ -10,9 +10,11 @@ class CreateUserUseCase {
   
   async execute(data: ICreateUserDTO, avatar_file: string): Promise<void> {
     const { name } = data;
-    Object.assign(data, {
-      avatar: avatar_file
-    })
+    if (avatar_file) {
+      Object.assign(data, {
+        avatar: avatar_file
+      })
+    }
 
     const userAlreadyExists = await this.usersRepository.findByName(name);
     if (userAlreadyExists) {

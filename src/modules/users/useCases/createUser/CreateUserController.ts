@@ -7,8 +7,7 @@ class CreateUserController {
     const data = request.body;
 
     let avatar_file = ""
-    if (request.file.filename) {
-      console.log('exists', request.file.filename);
+    if (request.file && request.file.filename) {
       avatar_file = request.file.filename;
     }
 
