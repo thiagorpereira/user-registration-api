@@ -1,5 +1,7 @@
 import { inject, injectable } from "tsyringe";
+import { IUserResponseDTO } from "../../dtos/IUserResponseDTO";
 import { User } from "../../entities/User";
+import { UserMap } from "../../mapper/UserMap";
 import { IUsersRepository } from "../../repositories/IUsersRepository";
 
 @injectable()
@@ -9,9 +11,10 @@ class ListUsersUseCase {
     private usersRepository: IUsersRepository
   ) { }
   
-  async execute(): Promise<User[]> {
+  async execute(): Promise<IUserResponseDTO[]> {
     const users = await this.usersRepository.list();
-    return users;
+    const usersTranform = users.map(user => user = UserMap.toDTO(user))
+    return usersTranform;
   }
 }
 

@@ -6,7 +6,12 @@ class UpdateUserAvatarController {
   async handle(request: Request, response: Response) : Promise<Response> {
     
     const { id } = request.params;
-    const avatar_file = request.file.filename;
+
+    let avatar_file = ""
+    if (request.file && request.file.filename) {
+      avatar_file = request.file.filename;
+    }
+
     const { code, name, birth_date } = request.body;
     
     const updateUserAvatarUseCase = container.resolve(UpdateUserAvatarUseCase)
