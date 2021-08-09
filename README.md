@@ -13,7 +13,7 @@ https://github.com/thiagorpereira/user-registration-api
 Troque para a branch de ambiente local de desenvolvimento (A main está com configurações incompletas p/ subir na AWS e Armazenar uploads na S3 )
 
 ```console
-git checkout -b feature/api_local
+git checkout feature/api_local
 ```
 
 Instale as dependências
